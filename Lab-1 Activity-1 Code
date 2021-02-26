@@ -1,0 +1,51 @@
+package com.example.helloworld;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import org.w3c.dom.Text;
+
+import java.text.BreakIterator;
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Random rand = new Random();
+        numberToGuess = rand.nextInt(1000);
+    }
+
+    int check = 0;
+    int numberToGuess;
+    int numberOfTries = 0;
+
+    public void Validate(View view)
+    {
+        TextView txt = findViewById(R.id.txt);
+        TextView guessBox = findViewById(R.id.guessBox);
+
+        txt.setText("Guess a number between 1 to 1000: ");
+        int guess = Integer.parseInt(guessBox.getText().toString());
+        if(guess == numberToGuess)
+        {
+            txt.setText("you guessed the correct number");
+            check = 0;
+        }else if(guess < numberToGuess){
+            txt.setText("Your guess is too low");
+        }else if(guess>numberToGuess){
+            txt.setText(" Your guess is too high");
+        }
+    }
+}
